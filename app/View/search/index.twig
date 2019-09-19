@@ -12,6 +12,25 @@
 {% block page_content %}
     <div class="page-header text-center">
         <h1>自分のいくライブを選択しよう！</h1>
+        <h2>Yo-in</h2>
+<div class="container">
+    <div class="row mt-4">
+        <div class="col-2">
+            <label>日付：</label>
+        </div>
+        <div class="col-5">
+
+            <!-- ここにカレンダー表示用のテキストボックスを追加 -->
+            <input type="text" class="form-control" id="date_sample">
+
+        </div>
+    </div>
+</div>
+<!-- bootstrap-datepickerのjavascriptコード -->
+<script>
+    $('#date_sample').datepicker();
+</script>
+
     </div>
     <div class="row">
         <!-- Boostrapのテーブルタグについては、https://cccabinet.jpn.org/bootstrap4/content/tables 参照 -->
@@ -20,6 +39,7 @@
             <input type="text" name="date" required value="{{ date }}">
             <input type="submit" name="" value="探す">
           </form>
+            {% if result %}
             <table class="table table-striped">
                 <thead class="thead-light">
                 <tr>
@@ -27,7 +47,6 @@
                     <th scope="col">ライブ名</th>
                     <th scope="col">会場</th>
                     <th scope="col">選択</th>
-                    <!-- <th scope="col">価格</th> -->
                 </tr>
                 </thead>
                 <tbody>
@@ -35,7 +54,6 @@
                 {# コントローラで指定した $data["result"] は Twigでは result として扱えます #}
                 {# for文でresultの中の一次元目の配列をループで回す形となります #}
                 {# ループ処理中の1行はrowの中に入りますので、このループ中はrow.カラム名で情報を表示することが可能です #}
-                {# eventテーブル #}
                 {% for row in result %}
                     <tr>
                         <td class="align-middle" scope="col">
@@ -48,15 +66,20 @@
                             <p>{{ row.place }}</p>
                         </td>
                         <td class="align-middle" scope="col">
-                            <a href="/restaurant/list/{{ row.id }}">選択する</a>
+                            <a href="＃">選択する</a>
                         </td>
                     </tr>
                 {% endfor %}
                 </tbody>
             </table>
+            {% endif %}
         </div>
     </div>
 {% endblock %}
 
 {#共通フッタとして追記したい情報を記載します。#}
-{% block footer_scripts_add %}{% endblock %}
+{% block footer_scripts_add %}
+<link rel="stylesheet" type="text/css" href="/js/bootstrap-datepicker-1.9.0-dist/css/bootstrap-datepicker.min.css">
+<script type="text/javascript" src="/js/bootstrap-datepicker-1.9.0-dist/js/bootstrap-datepicker.min.js"></script>
+<script type="text/javascript" src="/js/bootstrap-datepicker-1.9.0-dist/locales/bootstrap-datepicker.ja.min.js"></script>
+{% endblock %}
