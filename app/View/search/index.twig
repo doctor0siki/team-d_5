@@ -26,6 +26,7 @@
                     <th scope="col">アーティスト</th>
                     <th scope="col">ライブ名</th>
                     <th scope="col">会場</th>
+                    <th scope="col">選択</th>
                     <!-- <th scope="col">価格</th> -->
                 </tr>
                 </thead>
@@ -37,15 +38,17 @@
                 {% for row in result %}
                     <tr>
                         <td class="align-middle" scope="col">
-                            <a href="/item/detail/{{ row.id }}">{{ row.artist }}</a>
+                            <p>{{ row.artist }}</p>
                         </td>
                         <td class="align-middle" scope="col">
-                            <a href="/item/detail/{{ row.id }}">{{ row.name }}</a>
+                            <p>{{ row.name }}</p>
                         </td>
                         <td class="align-middle" scope="col">
-                            <a href="/item/detail/{{ row.id }}">{{ row.place }}</a>
+                            <p>{{ row.place }}</p>
                         </td>
-                        <td class="align-middle" scope="col">{{ row.spec }}</td>
+                        <td class="align-middle" scope="col">
+                            <a href="＃">選択する</a>
+                        </td>
                     </tr>
                 {% endfor %}
                 </tbody>
