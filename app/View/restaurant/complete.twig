@@ -14,25 +14,15 @@
     <div class="card" style="width: 18rem;">
         <img src="https://dummyimage.com/320x240/ccc/fff.png&text=img1" class="card-img-top" alt="...">
         <div class="card-body">
-            <h5 class="card-title">{{ restaurant.name}}</h5>
+            <h5 class="card-title">予約完了！！</h5>
             <p class="card-text">{{ restaurant.detail}}</p>
         </div>
         <ul class="list-group list-group-flush">
-            <li class="list-group-item">{{ restaurant.tel}}</li>
             <li class="list-group-item">{{ restaurant.email}}</li>
         </ul>
 
         <div class="card-body">
-            <form class=“” action='/restaurant/detail/' method='post'>
-                <select id="select1a" class="form-control" name="people_num">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                </select>
-                <input type="hidden" name="restaurant_id" value="{{ restaurant.id }}">
-            <button type=“submit” class="btn btn-primary mb-2">予約する</button>
-            </form>
+            <a href="/mypage">マイページへ戻る</a>
         </div>
     </div>
 

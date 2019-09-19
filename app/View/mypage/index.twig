@@ -13,11 +13,31 @@
 {#ここから表示したい情報を記載します。#}
 {% block page_content %}
     <div class="card">
-        <h5 class="card-header">予約状況</h5>
-        <div class="card-body">
-            <p class="card-text">現在予約はありません</p>
-            <a href="#" class="btn btn-primary">予約する</a>
-        </div>
+        {# 予約がある場合#}
+        {% if reserves %}
+            {% for reserve in reserves %}
+                <div class="card-group">
+                    <div class="card">
+                        <div class="card-body">
+                                <h5 class="card-title">店舗名：{{ reserve.name }}</h5>
+                                <h5 class="card-title">予約人数：{{ reserve.people_num }}</h5>
+                                <h5 class="card-title">定員：{{ reserve.capacity }}</h5>
+                                <h5 class="card-title">{{ reserve.data }}</h5>
+                            <p class="card-text">{{ reserve.id }}</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+
+        {# 予約がない場合#}
+        {% else %}
+            <h5 class="card-header">予約状況</h5>
+            <div class="card-body">
+                <p class="card-text">現在予約はありません</p>
+                <a href="/search/" class="btn btn-primary">予約する</a>
+            </div>
+
+        {% endif %}
     </div>
 
     <hr>
