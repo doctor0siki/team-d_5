@@ -35,6 +35,7 @@
                 {# コントローラで指定した $data["result"] は Twigでは result として扱えます #}
                 {# for文でresultの中の一次元目の配列をループで回す形となります #}
                 {# ループ処理中の1行はrowの中に入りますので、このループ中はrow.カラム名で情報を表示することが可能です #}
+                {# eventテーブル #}
                 {% for row in result %}
                     <tr>
                         <td class="align-middle" scope="col">
@@ -47,7 +48,7 @@
                             <p>{{ row.place }}</p>
                         </td>
                         <td class="align-middle" scope="col">
-                            <a href="＃">選択する</a>
+                            <a href="/restaurant/list/{{ row.id }}">選択する</a>
                         </td>
                     </tr>
                 {% endfor %}
