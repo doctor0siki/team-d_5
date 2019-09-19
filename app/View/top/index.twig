@@ -12,8 +12,7 @@
 
 {#ここから表示したい情報を記載します。#}
 {% block page_content %}
-    {# セッションデータがない場合#}
-    {% if session.user_info  =="" %}
+
         <div class="row">
             <div class="col-sm-12">
                 <div class="page-header text-center">
@@ -30,37 +29,6 @@
                 </div>
             </div>
         </div>
-
-
-    {# セッションデータがある場合#}
-    {% else %}
-    <div class="card">
-        <h5 class="card-header">予約状況</h5>
-        <div class="card-body">
-            <p class="card-text">現在予約はありません</p>
-            <a href="#" class="btn btn-primary">予約する</a>
-        </div>
-    </div>
-
-    <hr>
-    {% for event in events %}
-    <div class="card-group">
-        <div class="card">
-            <img src="{{ event.img_url }}" class="card-img-top" alt="...">
-            <div class="card-body">
-                <a href="/item/detail/{{ row.id }}">
-                    <h5 class="card-title">{{ event.name }}</h5>
-                </a>
-                <p class="card-text">{{ event.place }}</p>
-            </div>
-            <div class="card-footer">
-                <small class="text-muted">Last updated 3 mins ago</small>
-            </div>
-        </div>
-    </div>
-    <hr>
-    {% endfor %}
-    {% endif %}
 
 {% endblock %}
 
