@@ -1,7 +1,16 @@
 <header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="/">TOP</a>
-        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#Navber" aria-controls="Navber" aria-expanded="false" aria-label="ナビゲーションの切替">
+    <nav class="navbar navbar-light bg-dark">
+        <a class="navbar-brand" href="../login/"><img src="/assets/img/logo.png" width="80" display="inline" "alt="logo"></a>
+
+        {% if current_path() == "/login/"%}
+          <div class="align-right">
+          <a href="../register/" class="btn btn-warning btn-sm" role="button">新規登録の方はこちら</a>
+          </div>
+        {% elseif current_path() == "/register/"%}
+          <a href="../login/" class="btn btn-warning btn-sm" role="button">ログインの方はこちら</a>
+        {% endif %}
+
+        <button type="button" class="navbar-toggler navbar-dark bg-dark" data-toggle="collapse" data-target="#Navber" aria-controls="Navber" aria-expanded="false" aria-label="ナビゲーションの切替">
             <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -10,11 +19,11 @@
                 {# セッションデータがない場合#}
                 {% if session.user_info  =="" %}
                     <li class="nav-item">
-                        <a class="nav-link" href="/login/">ログイン</a>
+                        <a class="nav-link text-light" href="/login/">ログイン</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/register/">会員登録</a>
-                    </li>
+                        <a class="nav-link text-light" href="/register/">会員登録</a>
+                   </li>
                 {# セッションデータがある場合#}
                 {% else %}
                     {# ここに↓メニュー追加していく #}
@@ -55,6 +64,7 @@
 
                 {% endif %}
             </ul>
+
             {# ログインしてたらユーザー名を出力する#}
             {% if session.user_info.name %}
                 <ul class="navbar-nav">
@@ -71,6 +81,7 @@
                     </li>
                 </ul>
             {% endif %}
+
         </div><!-- /.navbar-collapse -->
     </nav>
 </header>
