@@ -80,4 +80,24 @@ class Event extends Dao
 
     }
 
+    public function getByDate($date)
+    {
+
+        //全件取得するクエリを作成
+        $sql = "select * from event where date =:date";
+
+        // SQLをプリペア
+        $statement = $this->db->prepare($sql);
+
+        //idを指定します
+        $statement->bindParam(":date", $date, PDO::PARAM_STR);
+
+        //SQLを実行
+        $statement->execute();
+
+        //結果レコードを一件取得し、返送
+        return $statement->fetchAll();
+
+    }
+
 }
