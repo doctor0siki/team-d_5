@@ -1,6 +1,8 @@
 <?php
 
+use Model\Dao\Trade;
 use Model\Dao\Restaurant;
+use Model\Dao\Testaurant;
 use Slim\Http\Request;
 use Slim\Http\Response;
 
@@ -31,3 +33,22 @@ $app->get('/restaurant/detail/{restaurant_id}', function (Request $request, Resp
     return $this->view->render($response, 'restaurant/detail.twig', $data);
 
 });
+
+// 予約完了処理コントローラ
+$app->post('/restaurant/detail/', function (Request $request, Response $response) {
+
+    //POSTされた内容を取得します
+    $data = $request->getParsedBody();
+    
+    //ユーザーDAOをインスタンス化
+    $trade = new Trade($this->db);
+    
+    $data["user_id"] = $this->session["user_info"]["id"];
+
+    //DBに登録をする。戻り値は自動発番されたIDが返ってきます
+    $id = $trade->insert($data);
+
+    // 登録完了ページを表示します。
+    return $this->view->render($response, 'restaurant/complete.twig', $data);
+});
+
