@@ -48,7 +48,9 @@
         <div class="card">
             <img src="{{ event.img_url }}" class="card-img-top" alt="...">
             <div class="card-body">
-                <h5 class="card-title">{{ event.name }}</h5>
+                <a href="/item/detail/{{ row.id }}">
+                    <h5 class="card-title">{{ event.name }}</h5>
+                </a>
                 <p class="card-text">{{ event.place }}</p>
             </div>
             <div class="card-footer">
