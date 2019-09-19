@@ -1,0 +1,31 @@
+{#レイアウトを継承します#}
+{% extends "layout/layout.twig" %}
+
+{#HTMLのタイトルを定義します。#}
+{% block title %}{{ result.name }}の詳細情報{% endblock %}
+
+{# このページに適用させたいスタイルシートを指定します #}
+{% block header_scripts_add %}
+{% endblock %}
+
+{#ここから表示したい情報を記載します。#}
+{% block page_content %}
+
+    <div class="card" style="width: 18rem;">
+        <img src="https://dummyimage.com/320x240/ccc/fff.png&text=img1" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">{{ restaurant.name}}</h5>
+            <p class="card-text">{{ restaurant.detail}}</p>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">{{ restaurant.tel}}</li>
+            <li class="list-group-item">{{ restaurant.email}}</li>
+        </ul>
+        <div class="card-body">
+            <a href="#" class="card-link">予約する</a>
+        </div>
+    </div>
+{% endblock %}
+
+{#共通フッタとして追記したい情報を記載します。#}
+{% block footer_scripts_add %}{% endblock %}
