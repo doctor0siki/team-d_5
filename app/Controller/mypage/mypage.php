@@ -32,6 +32,8 @@ $app->get('/mypage', function (Request $request, Response $response) {
 
     //アイテム一覧を取得し、戻り値をresultに格納します
     $data["events"] = $event->getEventList();
+
+    
     
 
     // dd($data);
