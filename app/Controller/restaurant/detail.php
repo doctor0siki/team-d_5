@@ -50,15 +50,14 @@ $app->post('/restaurant/detail/', function (Request $request, Response $response
 
     //trade情報既にあったらエラーにするよ
     $duplicate_trade = $trade->select(array("restaurant_id" => $data["restaurant_id"], "user_id" => $data["user_id"] ), "", "", 1, false);
+    $restaurant = $restaurants->select(array("id" => $data["restaurant_id"]), "", "", 1, false);
+
     if($duplicate_trade){
+        $data['restaurant'] = $restaurant;
         $data['error_message'] = '既に予約済みです。';
         // 詳細ページに戻ります。
-//        return $response->withRedirect('/restaurant/detail/'.$data["restaurant_id"]);
-        // 登録完了ページを表示します。
         return $this->view->render($response, 'restaurant/detail.twig', $data);
     }
-
-    $restaurant = $restaurants->select(array("id" => $data["restaurant_id"]), "", "", 1, false);
 
     // 予約人数を増やす処理
     $reserved_num = $data["people_num"] + $restaurant["reserve_num"];
