@@ -69,9 +69,22 @@ $app->get('/restaurant/cancel/{trade_id}', function (Request $request, Response 
 
     $trade_id = $args["trade_id"];
 
-    $trade = new Trade($this->db);
+    // Tradeテーブルのインスタンス化
+    $trades = new Trade($this->db);
+    $restaurants = new Restaurant($this->db);
 
-    $trade->delete($trade_id);
+    $trade = $trades->select(array("id" => $trade_id), "", "", 1, false);
+
+    
+    // 予約人数を減らす処理
+    $restaurant = $restaurants->select(array("id" => $trade["restaurant_id"]), "", "", 1, false);
+    $reserved_num = $restaurant["reserve_num"] - $trade["people_num"];
+    
+    $restaurants->update(array("id" => $restaurant["id"], "reserve_num" => $reserved_num));
+
+    $trades->delete($trade_id);
+
+
 
     return $this->view->render($response, 'restaurant/cancel.twig', $data);
 });
