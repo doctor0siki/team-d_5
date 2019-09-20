@@ -1,6 +1,11 @@
 <header>
     <nav class="navbar navbar-light bg-dark">
-        <a class="navbar-brand" href="../login/"><img src="/assets/img/logo.png" width="80" display="inline" "alt="logo"></a>
+        {% if session.user_info  =="" %}
+            <a class="navbar-brand" href="../login/"><img src="/assets/img/logo.png" width="80" display="inline" "alt="logo"></a>
+        {% else %}
+            <a class="navbar-brand" href="/"><img src="/assets/img/logo.png" width="80" display="inline" "alt="logo"></a>
+        {% endif %}
+
 
         {% if current_path() == "/login/"%}
           <div class="align-right">
@@ -37,10 +42,12 @@
                         <a class="nav-link" href="/item/list/">一覧ページ</a>
                     </li>
                     #}
-
+                    {#
                     <li class="nav-item">
                         <a class="nav-link" href="/search/">検索</a>
                     </li>
+                    #}
+
                     {# サンプルとして詳細ページの商品番号1番を出すURLです#}
                     {#
                     <li class="nav-item">
@@ -60,8 +67,6 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/resign/">退会</a>
                     </li>
-
-
                 {% endif %}
             </ul>
 

@@ -38,10 +38,17 @@ $app->get('/restaurant/detail/{restaurant_id}', function (Request $request, Resp
 $app->post('/restaurant/detail/', function (Request $request, Response $response) {
 
     //POSTされた内容を取得します
+    // restran_id、people_num（予約申し込み人数）
     $data = $request->getParsedBody();
     
     //ユーザーDAOをインスタンス化
     $trade = new Trade($this->db);
+    $restaurants = new Restaurant($this->db);
+
+    $restaurant = $restaurants->select(array("id" => $data["restaurant_id"]), "", "", 1, false);
+
+    $restaurant["reserve_num"] += $data["people_num"];
+
     
     $data["user_id"] = $this->session["user_info"]["id"];
 
