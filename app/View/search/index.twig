@@ -2,7 +2,7 @@
 {% extends "layout/layout.twig" %}
 
 {#HTMLのタイトルを定義します。#}
-{% block title %}商品一覧{% endblock %}
+{% block title %}ライブ選択{% endblock %}
 
 {# このページに適用させたいスタイルシートを指定します #}
 {% block header_scripts_add %}
@@ -10,16 +10,46 @@
 
 {#ここから表示したい情報を記載します。#}
 {% block page_content %}
-    <div class="page-header text-center">
+    <div class="page-header text-center container mt-5">
         <h1>自分のいくライブを選択しよう！</h1>
+        <p> <img src="/assets/img/logo.png" alt="">
+         </p>
+
     </div>
     <div class="row">
         <!-- Boostrapのテーブルタグについては、https://cccabinet.jpn.org/bootstrap4/content/tables 参照 -->
         <div class="table-responsive">
           <form class="" action="/search/" method="get">
-            <input type="text" name="date" required value="{{ date }}">
-            <input type="submit" name="" value="探す">
+
+            <div class="search-wrapper mt-5">
+              <input type="text" name="date" required value="{{ date }}" id="date" class="form-control">
+              <input type="submit" name="" value="探す" class="search-btn">
+              <style>
+                .search-wrapper {
+                  margin: 0 auto;
+                  padding: 40px;
+                  text-align: center;
+                  width: 70%;
+                }
+                .form-control {
+                  /* height: 40px; */
+                  font-size: 40px;
+                  line-height: 40px;
+                  text-align: center;
+                }
+                .search-btn {
+                  margin: 36px;
+                  padding: 0 20px;
+                  font-size: 2.5rem;
+                  background-color: #ffc107;
+                  border-radius: 5px;
+                }
+
+              </style>
+
+            </div>
           </form>
+            {% if result %}
             <table class="table table-striped">
                 <thead class="thead-light">
                 <tr>
@@ -27,7 +57,6 @@
                     <th scope="col">ライブ名</th>
                     <th scope="col">会場</th>
                     <th scope="col">選択</th>
-                    <!-- <th scope="col">価格</th> -->
                 </tr>
                 </thead>
                 <tbody>
@@ -35,7 +64,6 @@
                 {# コントローラで指定した $data["result"] は Twigでは result として扱えます #}
                 {# for文でresultの中の一次元目の配列をループで回す形となります #}
                 {# ループ処理中の1行はrowの中に入りますので、このループ中はrow.カラム名で情報を表示することが可能です #}
-                {# eventテーブル #}
                 {% for row in result %}
                     <tr>
                         <td class="align-middle" scope="col">
@@ -48,15 +76,26 @@
                             <p>{{ row.place }}</p>
                         </td>
                         <td class="align-middle" scope="col">
-                            <a href="/restaurant/list/{{ row.id }}">選択する</a>
+                            <a href="＃">選択する</a>
                         </td>
                     </tr>
                 {% endfor %}
                 </tbody>
             </table>
+            {% endif %}
         </div>
     </div>
 {% endblock %}
 
 {#共通フッタとして追記したい情報を記載します。#}
-{% block footer_scripts_add %}{% endblock %}
+{% block footer_scripts_add %}
+<link rel="stylesheet" type="text/css" href="/assets/js/bootstrap-datepicker-1.9.0-dist/css/bootstrap-datepicker.min.css">
+<script type="text/javascript" src="/assets/js/bootstrap-datepicker-1.9.0-dist/js/bootstrap-datepicker.min.js"></script>
+<script type="text/javascript" src="/assets/js/bootstrap-datepicker-1.9.0-dist/locales/bootstrap-datepicker.ja.min.js"></script>
+<!-- bootstrap-datepickerのjavascriptコード -->
+<script>
+    $('#date').datepicker({
+    format: "yyyy-mm-dd"
+});
+</script>
+{% endblock %}
