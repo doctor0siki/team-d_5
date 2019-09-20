@@ -33,9 +33,9 @@
                 {% else %}
                     {# ここに↓メニュー追加していく #}
                     {# 一覧ページを出すサンプルURLです #}
-                    
+
                     <li class="nav-item">
-                        <a class="nav-link" href="/mypage">マイページ</a>
+                        <a class="nav-link text-light" href="/mypage">{{ session.user_info.name }}さんのマイページ</a>
                     </li>
                     {#
                     <li class="nav-item">
@@ -44,7 +44,7 @@
                     #}
                     {#
                     <li class="nav-item">
-                        <a class="nav-link" href="/search/">検索</a>
+                        <a class="nav-link text-light" href="/search/">検索</a>
                     </li>
                     #}
 
@@ -62,10 +62,10 @@
                     #}
                     {# ここに↑メニュー追加していく #}
                     <li class="nav-item">
-                        <a class="nav-link" href="/logout/">ログアウト</a>
+                        <a class="nav-link text-light" href="/logout/">ログアウト</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/resign/">退会</a>
+                        <a class="nav-link text-light" href="/resign/">退会</a>
                     </li>
                 {% endif %}
             </ul>
@@ -80,9 +80,6 @@
                             <input class="form-control mr-sm-2" type="search" name="keyword" placeholder="キーワード" value="{{ keyword }}" aria-label="Search">
                             <button class="btn btn-outline-info my-2 my-sm-0" type="submit">検索</button>
                         </form>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">{{ session.user_info.name }}さん</a>
                     </li>
                 </ul>
             {% endif %}
