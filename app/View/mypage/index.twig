@@ -12,10 +12,11 @@
 
 {#ここから表示したい情報を記載します。#}
 {% block page_content %}
-    <div class="card">
+    <div class="card mt-5">
         {# 予約がある場合#}
         {% if reserves %}
             {% for reserve in reserves %}
+            <h5 class="card-header">予約状況</h5>
                 <div class="card-group">
                     <div class="card">
                         <div class="card-body">
@@ -41,26 +42,21 @@
     </div>
 
     <hr>
-{#        <div class="row"> #}
+        <div class="row">
     {% for event in events %}
-{#    <div class="card-group col-3">
-        <div class="col-12">
-        <div class="card">
-            <img src="{{ event.img_url }}" class="card-img-top" alt="...">
-            <div class="card-img-overlay">
+    <div class="card-group col-3 col-md-4 col-sm-6 p-0">
+        <div class="card h-100">
+            <img src="{{ event.img_url }}" class="card-img-top" alt="..." style="width:95%;height:95%;object-fit:cover;">
+            <div class="card-img-overlay pt-0 pl-0 pr-0">
+              <div style="background-color:rgba(0, 0, 0, 0.5);">
               <a href="/restaurant/list/{{ event.id }}">
-                  <h5 class="card-title">{{ event.name }}</h5>
+                  <h5 style="font-size:1.8vw;" class="card-title">{{ event.name }}</h5>
+                  <p style="font-size:1.5vw;" class="card-text">{{ event.place }}</p>
               </a>
-              <p class="card-text">{{ event.place }}</p>
             </div>
-        </div>
+            </div>
       </div>
-    </div>#}
-    <div style="display:block;">
-    <div style="text-align:centsr;float:left;width:300px;border:solid 1px red;">
-      {{ event.id }}
     </div>
-  </div>
     {% endfor %}
   </div>
   <hr>

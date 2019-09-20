@@ -87,6 +87,10 @@ sub {
 img {
   border: 0;
 }
+a:visited {
+    color:white;
+    text-decoration:underline;
+}
 .card-img-overlay {
   position: absolute;
   top: 0;
