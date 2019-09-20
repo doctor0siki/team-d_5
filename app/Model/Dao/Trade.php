@@ -80,4 +80,32 @@ class Trade extends Dao
 
     }
 
+    /**
+     * deleteByUser Function
+     *
+     * Tradeテーブルから指定ユーザーのレコードを削除するクエリです。
+     *
+     * @param int $user_id 引数として、取得したい商品のアイテムIDを指定します。
+     * @return array $result 結果情報を連想配列で指定します。
+     * @throws DBALException
+     * @copyright Ceres inc.
+     * @author y-fukumoto <y-fukumoto@ceres-inc.jp>
+     * @since 2019/08/14
+     */
+
+    public function deleteByUser($user_id)
+    {
+
+        //全件取得するクエリを作成
+        $sql = "delete from trade where user_id =:user_id";
+
+        // SQLをプリペア
+        $statement = $this->db->prepare($sql);
+
+        //idを指定します
+        $statement->bindParam(":user_id", $user_id, PDO::PARAM_INT);
+
+        //SQLを実行
+        return $statement->execute();
+    }
 }
