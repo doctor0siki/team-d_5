@@ -20,12 +20,13 @@
                 <div class="card-group">
                     <div class="card">
                         <div class="card-body">
+                        
                                 <h5 class="card-title">店舗名：{{ reserve.name }}</h5>
                                 <h5 class="card-title">予約人数：{{ reserve.people_num }}</h5>
                                 <h5 class="card-title">申し込み人数：{{ reserve.people_num }}</h5>
                                 <h5 class="card-title">予約状況：{{ reserve.reserve_num }}/{{ reserve.capacity }}</h5>
                                 <h5 class="card-title">予約時間：{{ reserve.date }}</h5>
-                                <a href="/restaurant/cancel/" class="btn btn-warning">キャンセルする</a>
+                                <a href="/restaurant/cancel/{{ reserve.trade_id }}" class="btn btn-warning">キャンセルする</a>
                         </div>
                     </div>
                 </div>

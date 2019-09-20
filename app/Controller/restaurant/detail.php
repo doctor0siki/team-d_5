@@ -63,9 +63,15 @@ $app->post('/restaurant/detail/', function (Request $request, Response $response
 });
 
 // キャンセルコントローラ
-$app->get('/restaurant/cancel/', function (Request $request, Response $response) {
+$app->get('/restaurant/cancel/{trade_id}', function (Request $request, Response $response, $args) {
 
     $data = [];
+
+    $trade_id = $args["trade_id"];
+
+    $trade = new Trade($this->db);
+
+    $trade->delete($trade_id);
 
     return $this->view->render($response, 'restaurant/cancel.twig', $data);
 });
