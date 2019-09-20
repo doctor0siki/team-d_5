@@ -12,17 +12,18 @@
 
 {#ここから表示したい情報を記載します。#}
 {% block page_content %}
-    <div class="card">
+    <div class="card mt-5">
         {# 予約がある場合#}
         {% if reserves %}
             {% for reserve in reserves %}
+            <h5 class="card-header">予約状況</h5>
                 <div class="card-group">
                     <div class="card">
                         <div class="card-body">
                                 <h5 class="card-title">店舗名：{{ reserve.name }}</h5>
                                 <h5 class="card-title">予約人数：{{ reserve.people_num }}</h5>
                                 <h5 class="card-title">申し込み人数：{{ reserve.people_num }}</h5>
-                                <h5 class="card-title">予約状況：{{ reserve.people_num }}/{{ reserve.capacity }}</h5>
+                                <h5 class="card-title">予約状況：{{ reserve.reserve_num }}/{{ reserve.capacity }}</h5>
                                 <h5 class="card-title">予約時間：{{ reserve.date }}</h5>
                         </div>
                     </div>
@@ -34,30 +35,31 @@
             <h5 class="card-header">予約状況</h5>
             <div class="card-body">
                 <p class="card-text">現在予約はありません</p>
-                <a href="/search/" class="btn btn-primary">予約する</a>
+                <a href="/search/" class="btn btn-warning">予約をする</a>
             </div>
 
         {% endif %}
     </div>
 
     <hr>
+        <div class="row">
     {% for event in events %}
-    <div class="card-group">
-        <div class="card">
-            <img src="{{ event.img_url }}" class="card-img-top" alt="...">
-            <div class="card-body">
-                <a href="/restaurant/list/{{ event.id }}">
-                    <h5 class="card-title">{{ event.name }}</h5>
-                </a>
-                <p class="card-text">{{ event.place }}</p>
+    <div class="card-group col-3 col-md-4 col-sm-6 p-0">
+        <div class="card h-100">
+            <img src="{{ event.img_url }}" class="card-img-top" alt="..." style="width:95%;height:95%;object-fit:cover;">
+            <div class="card-img-overlay pt-0 pl-0 pr-0">
+              <div style="background-color:rgba(0, 0, 0, 0.5);">
+              <a href="/restaurant/list/{{ event.id }}">
+                  <h5 style="font-size:1.8vw;" class="card-title">{{ event.name }}</h5>
+                  <p style="font-size:1.5vw;" class="card-text">{{ event.place }}</p>
+              </a>
             </div>
-            <div class="card-footer">
-                <small class="text-muted">Last updated 3 mins ago</small>
             </div>
-        </div>
+      </div>
     </div>
-    <hr>
     {% endfor %}
+  </div>
+  <hr>
 
 {% endblock %}
 
