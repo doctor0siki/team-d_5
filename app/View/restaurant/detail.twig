@@ -24,20 +24,24 @@
 
         <div class="card-body">
             <form class=“” action='/restaurant/detail/' method='post'>
-                <span><h5>人数</h5></span><select id="select1a" class="form-control" name="people_num">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                    <option>10</option>
-                </select>
+          <div class="">
+            <span><h5>人数</h5></span>
+
+            <select id="select1a" class="form-control" name="people_num">
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+              <option>6</option>
+              <option>7</option>
+              <option>8</option>
+              <option>9</option>
+              <option>10</option>
+            </select>            
+          </div>
                 <input type="hidden" name="restaurant_id" value="{{ restaurant.id }}">
-            <button type=“submit” class="btn btn-primary mb-2 col-4">予約する</button>
+                <button type=“submit” class="btn btn-primary mt-2">予約する</button>
             </form>
             {% if error_message %}
             <div class="alert-warning">
@@ -66,6 +70,7 @@
         border: none;
         text-align: center;
         display: block;
+        width: 40%;
       }
 
       .form-control {
