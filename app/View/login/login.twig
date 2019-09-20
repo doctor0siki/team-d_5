@@ -15,7 +15,7 @@
     </div>
     <div class="box">
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-8 offset-2">
                 <div class="well">
                     <form id="loginForm" method="POST" action="/login/">
                         <div class="form-group">
@@ -31,11 +31,19 @@
                                 <div class="alert alert-danger" role="alert">{{ error }}</div>
                             </div>
                         {% endif %}
-                        <button type="submit" class="btn btn-success btn-block">ログイン</button>
+                        <button type="submit" class="btn btn-warning btn-block">ログイン</button>
                     </form>
                 </div>
+                {% if current_path() == "/login/"%}
+                  <div class="align-right">
+                  <a href="../register/" class="" role="button">新規登録の方はこちら</a>
+                  </div>
+                {% elseif current_path() == "/register/"%}
+                  <a href="../login/" class="btn btn-warning btn-sm" role="button">ログインの方はこちら</a>
+                {% endif %}
+
             </div>
-{#        
+{#
             <div class="col-md-6">
                 <p class="lead">会員登録は <span class="text-success">無料</span> 今すぐ登録！</p>
                 <ul class="list-unstyled">
