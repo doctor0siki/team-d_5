@@ -21,7 +21,7 @@
                 <tr>
                     <th scope="col">写真</th>
                     <th scope="col">店舗名</th>
-                    {# <th scope="col">詳細</th> #}
+                    <th scope="col">予約状況</th>
                     <th scope="col">価格</th>
                 </tr>
                 </thead>
@@ -40,7 +40,7 @@
                         <td class="align-middle" scope="col">
                             <a href="/restaurant/detail/{{ restaurant.id }}">{{ restaurant.name }}</a>
                         </td>
-                        {# <td class="align-middle" scope="col">{{ restaurant.detail }}</td> #}
+                        <td class="align-middle" scope="col">{{ restaurant.reserve_num }}／{{ restaurant.capacity }}</td>
                         <td class="align-middle" scope="col">{{ restaurant.price | number_format }}円</td>
                     </tr>
                 {% endfor %}
