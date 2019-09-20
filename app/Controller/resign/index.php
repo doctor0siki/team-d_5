@@ -33,7 +33,7 @@ $app->post('/resign/', function (Request $request, Response $response) {
     $trade_list = $tradeDAO->select(array('user_id' => $this->session->user_info["id"]),null,null,null,true );
     //restrant側の予約情報を削除するよ
     foreach($trade_list as $trade){
-        $restrantDAO->update(array('id'=>$trade['restaurant_id'], 'reserve_num'=> 'reserve_num + ' .$trade['people_num']));
+        $restrantDAO->addReserve($trade['restaurant_id'] ,intval($trade['people_num']) * -1);
     }
     //予約情報を削除するよ
     $tradeDAO->deleteByUser($this->session->user_info["id"]);
