@@ -47,7 +47,10 @@ $app->post('/restaurant/detail/', function (Request $request, Response $response
 
     $restaurant = $restaurants->select(array("id" => $data["restaurant_id"]), "", "", 1, false);
 
-    $restaurant["reserve_num"] += $data["people_num"];
+    // 予約人数を増やす処理
+    $reserved_num = $data["people_num"] + $restaurant["reserve_num"];
+
+    $restaurant = $restaurants->update(array("id" => $data["restaurant_id"], "reserve_num" => $reserved_num));
 
     
     $data["user_id"] = $this->session["user_info"]["id"];
