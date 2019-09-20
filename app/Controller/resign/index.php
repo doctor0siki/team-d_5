@@ -3,6 +3,7 @@
 use Slim\Http\Request;
 use Slim\Http\Response;
 use Model\Dao\User;
+use Model\Dao\Trade;
 
 
 // 会員登録ページコントローラ
@@ -24,8 +25,10 @@ $app->post('/resign/', function (Request $request, Response $response) {
 
     //ユーザーDAOをインスタンス化
     $user = new User($this->db);
+    $trade = new Trade($this->db);
 
     //ログイン中のユーザーを削除する
+    $trade->deleteByUser($this->session->user_info["id"]);
     $user->delete($this->session->user_info["id"]);
 
     //セッションから情報削除
