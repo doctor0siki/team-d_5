@@ -7,13 +7,15 @@
         {% endif %}
 
 
-        {% if current_path() == "/login/"%}
-          <div class="align-right">
+    {#    {% if current_path() == "/login/"%}
+        <div>
           <a href="../register/" class="btn btn-warning btn-sm" role="button">新規登録の方はこちら</a>
-          </div>
+        </div>
         {% elseif current_path() == "/register/"%}
-          <a href="../login/" class="btn btn-warning btn-sm" role="button">ログインの方はこちら</a>
-        {% endif %}
+        <div>
+          <a href="../login/" class="btn btn-warning btn-sm" style="float:right;" role="button">ログインの方はこちら</a>
+        </div>
+      {% endif %}#}
 
         <button type="button" class="navbar-toggler navbar-dark bg-dark" data-toggle="collapse" data-target="#Navber" aria-controls="Navber" aria-expanded="false" aria-label="ナビゲーションの切替">
             <span class="navbar-toggler-icon"></span>
