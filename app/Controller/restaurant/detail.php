@@ -53,7 +53,9 @@ $app->post('/restaurant/detail/', function (Request $request, Response $response
     if($duplicate_trade){
         $data['error_message'] = '既に予約済みです。';
         // 詳細ページに戻ります。
-        return $response->withRedirect('/restaurant/detail/'.$data["restaurant_id"]);
+//        return $response->withRedirect('/restaurant/detail/'.$data["restaurant_id"]);
+        // 登録完了ページを表示します。
+        return $this->view->render($response, 'restaurant/detail.twig', $data);
     }
 
     $restaurant = $restaurants->select(array("id" => $data["restaurant_id"]), "", "", 1, false);
