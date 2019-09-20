@@ -80,4 +80,33 @@ class Restaurant extends Dao
 
     }
 
+    /**
+     * getItem Function
+     *
+     * Itemテーブルから指定idのレコードを一件取得するクエリです。
+     *
+     * @param int $id 引数として、取得したい商品のアイテムIDを指定します。
+     * @return array $result 結果情報を連想配列で指定します。
+     * @throws DBALException
+     * @copyright Ceres inc.
+     * @author y-fukumoto <y-fukumoto@ceres-inc.jp>
+     * @since 2019/08/14
+     */
+
+    public function addReserve($id, $reserve_num)
+    {
+
+        //全件取得するクエリを作成
+        $sql = "update restaurant set reserve_num = reserve_num + :reserve_num where id =:id";
+
+        // SQLをプリペア
+        $statement = $this->db->prepare($sql);
+
+        //idを指定します
+        $statement->bindParam(":reserve_num", $reserve_num, PDO::PARAM_INT);
+        $statement->bindParam(":id", $id, PDO::PARAM_INT);
+
+        //SQLを実行
+        return $statement->execute();
+    }
 }
