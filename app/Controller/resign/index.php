@@ -3,6 +3,7 @@
 use Slim\Http\Request;
 use Slim\Http\Response;
 use Model\Dao\User;
+use Model\Dao\Restrant;
 use Model\Dao\Trade;
 
 
