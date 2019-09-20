@@ -32,8 +32,10 @@ $app->post('/resign/', function (Request $request, Response $response) {
     //予約情報を削除（restrantテーブルの予約数を修正するために人数取得しておく
     $trade_list = $tradeDAO->select(array('user_id' => $this->session->user_info["id"]),null,null,null,true );
     //restrant側の予約情報を削除するよ
-    foreach($trade_list as $trade){
-        $restrantDAO->addReserve($trade['restaurant_id'] ,intval($trade['people_num']) * -1);
+    if($trade_list){
+        foreach($trade_list as $trade){
+            $restrantDAO->addReserve($trade['restaurant_id'] ,intval($trade['people_num']) * -1);
+        }
     }
     //予約情報を削除するよ
     $tradeDAO->deleteByUser($this->session->user_info["id"]);
