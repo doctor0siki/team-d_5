@@ -12,7 +12,7 @@
 {% block page_content %}
 
     <div class="book-form mt-5">
-        <img src="https://dummyimage.com/320x240/ccc/fff.png&text=img1" class="card-img-top" alt="...">
+        <img src="{{ restaurant.img_url }}" class="card-img-top" alt="...">
         <div class="card-body">
             <h5 class="card-title">{{ restaurant.name}}</h5>
             <p class="card-text">{{ restaurant.detail}}</p>
@@ -24,7 +24,7 @@
 
         <div class="card-body">
             <form class=“” action='/restaurant/detail/' method='post'>
-                <select id="select1a" class="form-control" name="people_num">
+                <span><h5>人数</h5></span><select id="select1a" class="form-control" name="people_num">
                     <option>1</option>
                     <option>2</option>
                     <option>3</option>
@@ -36,8 +36,8 @@
                     <option>9</option>
                     <option>10</option>
                 </select>
-                <input type="hidden" name="restaurant_id" value="{{ restaurant.id }}"><span>人</span>
-            <button type=“submit” class="btn btn-primary mb-2">予約する</button>
+                <input type="hidden" name="restaurant_id" value="{{ restaurant.id }}">
+            <button type=“submit” class="btn btn-primary mb-2 col-4">予約する</button>
             </form>
         </div>
     </div>
@@ -46,28 +46,29 @@
        .book-form{
         margin: 0 auto;
         padding: 20px;
-        background-color: #343a40;
+        background-color: #343a4061;
         border: 2px solid gray;
         height: 60%;
         width: 60%;
+        border-radius: 10px;
       }
 
       .btn {
-        text-align: center;
-        display: inline-block;
         margin: 20px auto;
       }
       .btn-primary {
         background-color: #ffc107;
+        border: none;
+        text-align: center;
+        display: block;
       }
 
       .form-control {
         width: 100px;
+        float: left
       }
 
-      span {
 
-      }
 
     </style>
 
