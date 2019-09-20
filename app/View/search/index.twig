@@ -2,7 +2,7 @@
 {% extends "layout/layout.twig" %}
 
 {#HTMLのタイトルを定義します。#}
-{% block title %}商品一覧{% endblock %}
+{% block title %}ライブ選択{% endblock %}
 
 {# このページに適用させたいスタイルシートを指定します #}
 {% block header_scripts_add %}
@@ -10,17 +10,37 @@
 
 {#ここから表示したい情報を記載します。#}
 {% block page_content %}
-    <div class="page-header text-center">
+    <div class="page-header text-center container mt-5">
         <h1>自分のいくライブを選択しよう！</h1>
-        <h2>Yo-in</h2>
+        <p> <img src="/assets/img/logo.png" alt="">
+         </p>
 
     </div>
     <div class="row">
         <!-- Boostrapのテーブルタグについては、https://cccabinet.jpn.org/bootstrap4/content/tables 参照 -->
         <div class="table-responsive">
           <form class="" action="/search/" method="get">
-            <input type="text" name="date" required value="{{ date }}" id="date">
-            <input type="submit" name="" value="探す">
+            <div class="search-form mt-5">
+              <input type="text" name="date" required value="{{ date }}" id="date" class="input-area">
+              <input type="submit" name="" value="探す" class="search-btn">
+              <style>
+                .search-form {
+                  margin: 0 auto;
+                  padding: 40px;
+                  text-align: center;
+                  width: 70%;
+                }
+                .search-area {
+                  width: 200px;
+                  height: 40px;
+                  font-size: 40px;
+                  line-height: 40px;
+                }
+                .search-btn {
+                }
+              </style>
+
+            </div>
           </form>
             {% if result %}
             <table class="table table-striped">
