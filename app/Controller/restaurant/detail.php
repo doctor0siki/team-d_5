@@ -62,3 +62,11 @@ $app->post('/restaurant/detail/', function (Request $request, Response $response
     return $this->view->render($response, 'restaurant/complete.twig', $data);
 });
 
+// キャンセルコントローラ
+$app->get('/restaurant/cancel/', function (Request $request, Response $response) {
+
+    $data = [];
+
+    return $this->view->render($response, 'restaurant/cancel.twig', $data);
+});
+
