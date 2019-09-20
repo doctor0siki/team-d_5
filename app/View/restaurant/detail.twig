@@ -39,6 +39,11 @@
                 <input type="hidden" name="restaurant_id" value="{{ restaurant.id }}">
             <button type=“submit” class="btn btn-primary mb-2 col-4">予約する</button>
             </form>
+            {% if error_message %}
+            <div class="alert-warning">
+                {{ error_message }}
+            </div>
+            {% endif %}
         </div>
     </div>
 

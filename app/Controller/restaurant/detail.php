@@ -40,20 +40,29 @@ $app->post('/restaurant/detail/', function (Request $request, Response $response
     //POSTされた内容を取得します
     // restran_id、people_num（予約申し込み人数）
     $data = $request->getParsedBody();
-    
+
     //ユーザーDAOをインスタンス化
     $trade = new Trade($this->db);
     $restaurants = new Restaurant($this->db);
 
+    //ユーザーの情報
+    $data["user_id"] = $this->session["user_info"]["id"];
+
+    //trade情報既にあったらエラーにするよ
+    $duplicate_trade = $trade->select(array("restaurant_id" => $data["restaurant_id"], "user_id" => $data["user_id"] ), "", "", 1, false);
     $restaurant = $restaurants->select(array("id" => $data["restaurant_id"]), "", "", 1, false);
+
+    if($duplicate_trade){
+        $data['restaurant'] = $restaurant;
+        $data['error_message'] = '既に予約済みです。';
+        // 詳細ページに戻ります。
+        return $this->view->render($response, 'restaurant/detail.twig', $data);
+    }
 
     // 予約人数を増やす処理
     $reserved_num = $data["people_num"] + $restaurant["reserve_num"];
 
     $restaurant = $restaurants->update(array("id" => $data["restaurant_id"], "reserve_num" => $reserved_num));
-
-    
-    $data["user_id"] = $this->session["user_info"]["id"];
 
     //DBに登録をする。戻り値は自動発番されたIDが返ってきます
     $id = $trade->insert($data);
@@ -74,10 +83,10 @@ $app->get('/restaurant/cancel/{trade_id}', function (Request $request, Response 
     $restaurants = new Restaurant($this->db);
 
     $trade = $trades->select(array("id" => $trade_id), "", "", 1, false);
-    
+
     $data["restaurant"] = $restaurants->select(array("id" => $trade["restaurant_id"]), "", "", 1, false);
     $data["trade"] = $trades->select(array("id" => $trade_id), "", "", 1, false);
-    
+
     // $trades->delete($trade_id);
     return $this->view->render($response, 'restaurant/cancel.twig', $data);
 });
@@ -95,18 +104,17 @@ $app->get('/restaurant/cancel/complete/{trade_id}', function (Request $request, 
 
     $trade = $trades->select(array("id" => $trade_id), "", "", 1, false);
 
-    
+
     // 予約人数を減らす処理
     $restaurant = $restaurants->select(array("id" => $trade["restaurant_id"]), "", "", 1, false);
     $reserved_num = $restaurant["reserve_num"] - $trade["people_num"];
-    
+
     $restaurants->update(array("id" => $restaurant["id"], "reserve_num" => $reserved_num));
 
     $trades->delete($trade_id);
 
-    
-    
+
+
     // $trades->delete($trade_id);
     return $this->view->render($response, 'restaurant/cancel_complete.twig', $data);
 });
-
