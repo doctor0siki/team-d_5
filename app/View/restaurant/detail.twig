@@ -11,7 +11,7 @@
 {#ここから表示したい情報を記載します。#}
 {% block page_content %}
 
-    <div class="card" style="width: 18rem;">
+    <div class="book-form mt-5" style="width: 18rem;">
         <img src="https://dummyimage.com/320x240/ccc/fff.png&text=img1" class="card-img-top" alt="...">
         <div class="card-body">
             <h5 class="card-title">{{ restaurant.name}}</h5>
@@ -41,6 +41,16 @@
             </form>
         </div>
     </div>
+
+    <style>
+       .book-form{
+        margin: 0 auto;
+        padding: 20px;
+        background-color: pink;
+        border: 2px solid red;
+
+      }
+    </style>
 
 {% endblock %}
 
