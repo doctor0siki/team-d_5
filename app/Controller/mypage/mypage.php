@@ -27,6 +27,7 @@ $app->get('/mypage', function (Request $request, Response $response) {
         $data["reserves"][$num] = $restaurant->select(array("id" => $trade_data["restaurant_id"]), "", "", 10, false);
         
         $data["reserves"][$num]["people_num"] = $trade_data["people_num"];
+        $data["reserves"][$num]["trade_id"] = $trade_data["id"];
     }
 
     //アイテム一覧を取得し、戻り値をresultに格納します
