@@ -13,26 +13,13 @@
     <div class="page-header text-center">
         <h1>自分のいくライブを選択しよう！</h1>
         <h2>Yo-in</h2>
-<div class="container">
-    <div class="row mt-4">
-        <div class="col-2">
-            <label>日付：</label>
-        </div>
-        <div class="col-5">
-
-            <!-- ここにカレンダー表示用のテキストボックスを追加 -->
-            <input type="text" class="form-control" id="date_sample">
-
-        </div>
-    </div>
-</div>
 
     </div>
     <div class="row">
         <!-- Boostrapのテーブルタグについては、https://cccabinet.jpn.org/bootstrap4/content/tables 参照 -->
         <div class="table-responsive">
           <form class="" action="/search/" method="get">
-            <input type="text" name="date" required value="{{ date }}">
+            <input type="text" name="date" required value="{{ date }}" id="date">
             <input type="submit" name="" value="探す">
           </form>
             {% if result %}
@@ -80,6 +67,8 @@
 <script type="text/javascript" src="/assets/js/bootstrap-datepicker-1.9.0-dist/locales/bootstrap-datepicker.ja.min.js"></script>
 <!-- bootstrap-datepickerのjavascriptコード -->
 <script>
-    $('#date_sample').datepicker();
+    $('#date').datepicker({
+    format: "yyyy-mm-dd"
+});
 </script>
 {% endblock %}
