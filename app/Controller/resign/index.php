@@ -25,10 +25,18 @@ $app->post('/resign/', function (Request $request, Response $response) {
 
     //ユーザーDAOをインスタンス化
     $user = new User($this->db);
-    $trade = new Trade($this->db);
+    $tradeDAO = new Trade($this->db);
+    $restrantDAO = new Restaurant($this->db);
 
+    //予約情報を削除（restrantテーブルの予約数を修正するために人数取得しておく
+    $trade_list = $tradeDAO->select(array('user_id' => $this->session->user_info["id"]),null,null,null,true );
+    //restrant側の予約情報を削除するよ
+    foreach($trade_list as $trade){
+        $restrantDAO->update(array('id'=>$trade['restaurant_id'], 'reserve_num'=> 'reserve_num + ' .$trade['people_num']));
+    }
+    //予約情報を削除するよ
+    $tradeDAO->deleteByUser($this->session->user_info["id"]);
     //ログイン中のユーザーを削除する
-    $trade->deleteByUser($this->session->user_info["id"]);
     $user->delete($this->session->user_info["id"]);
 
     //セッションから情報削除
