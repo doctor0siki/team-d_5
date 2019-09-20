@@ -6,29 +6,27 @@
 
 {# 適用させたいスタイルシートのパスを指定します #}
 {% block header_scripts_add %}
-    {# 背景動画を表示させるスタイルを読み込みます。#}
-    <link href="/assets/css/video.css" rel="stylesheet">
+  {# 背景動画を表示させるスタイルを読み込みます。#}
+  <style>
+    /* .container {
+      width: 100%;
+    } */
+  </style>
 {% endblock %}
 
 {#ここから表示したい情報を記載します。#}
 {% block page_content %}
 
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="page-header text-center">
-                    <h1 style="font-size: 100px;color: red;background: rgba(255, 255, 128, .5);">ツイグ</h1>
-                </div>
-                <div class="box">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <video id="bg-video" src="/assets/img/bg.mp4" playsinline autoplay loop></video>
-                            <div id="filter">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12 top1">
+        <img class="img-fluid" src="assets/img/top1-1.jpg">
+        <div id="img-box-mini"class="col-6 offset-3" >
+          <a class="Link"href="../register/"></a>
         </div>
+      </div>
+    </div>
+  </div>
 
 {% endblock %}
 
