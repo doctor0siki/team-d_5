@@ -20,24 +20,31 @@
         <!-- Boostrapのテーブルタグについては、https://cccabinet.jpn.org/bootstrap4/content/tables 参照 -->
         <div class="table-responsive">
           <form class="" action="/search/" method="get">
-            <div class="search-form mt-5">
-              <input type="text" name="date" required value="{{ date }}" id="date" class="input-area">
+
+            <div class="search-wrapper mt-5">
+              <input type="text" name="date" required value="{{ date }}" id="date" class="form-control">
               <input type="submit" name="" value="探す" class="search-btn">
               <style>
-                .search-form {
+                .search-wrapper {
                   margin: 0 auto;
                   padding: 40px;
                   text-align: center;
                   width: 70%;
                 }
-                .search-area {
-                  width: 200px;
-                  height: 40px;
+                .form-control {
+                  /* height: 40px; */
                   font-size: 40px;
                   line-height: 40px;
+                  text-align: center;
                 }
                 .search-btn {
+                  margin: 36px;
+                  padding: 0 20px;
+                  font-size: 2.5rem;
+                  background-color: #ffc107;
+                  border-radius: 5px;
                 }
+
               </style>
 
             </div>
